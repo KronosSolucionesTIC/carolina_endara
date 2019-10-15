@@ -3,7 +3,7 @@ if (!empty($obs_fac)) {
     ?>
   <tr>
     <td colspan="5">
-      <div align="justify" >OBSERVACIONES:<br> <?=$obs_fac?></div>
+      <div align="justify" >OBSERVACIONES:<br> <?php echo $obs_fac ?></div>
     </td>
   </tr>
         <?

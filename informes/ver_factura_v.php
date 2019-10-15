@@ -42,23 +42,18 @@ if ($db_fac->next_row()) {
 
 ?>
 <script language="javascript">
-    function imprimir(){
+function imprimir(){
     window.print();
-    }
+}
 </script>
 <title>FACTURA DE VENTA</title>
 <style type="text/css">
-.Estilo3 {
-    font-size: 9px;
-    font-family: "verdana";
-    margin: 0px;
-    padding: 0px;
-}
-.Estilo4 {
-    font-size: 8px;
-    font-family: "verdana";
-    margin: 0px;
-    padding: 0px;
+.fuente {
+    font-size: 10px;
+    font-family: "Verdana";
+    font-weight: bold;
+    margin: 1px;
+    padding: 1px;
 }
 </style>
 <?
@@ -67,12 +62,11 @@ if ($estado_factura == "anulado") {
 }
 ?>
 <body>
-    <div class="table-responsive">
-        <table class="table">
-            <?php include "factura_encabezado.php";?>
-            <?php include "factura_cliente.php";?>
-            <?php include "factura_cuerpo.php";?>
-            <?php include "factura_footer.php";?>
-        </table>
-    </div>
+    <table class="table fuente">
+        <?php //include "factura_prueba.php";?>
+        <?php include "factura_encabezado.php";?>
+        <?php include "factura_cliente.php";?>
+        <?php include "factura_cuerpo.php";?>
+        <?php include "factura_footer.php";?>
+    </table>
 </body>

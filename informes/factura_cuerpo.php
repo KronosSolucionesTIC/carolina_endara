@@ -1,14 +1,14 @@
   <tr>
-    <td>CODIGO</td>
-    <td>DESCRIPCION</td>
-    <td align="center">CANT.</td>
-    <td align="center">DCTO.</td>
-    <td align="center">VALOR</td>
+    <td width="10%">CODIGO</td>
+    <td width="30%">DESCRIPCION</td>
+    <td align="center" width="20%">CANT.</td>
+    <td align="center" width="20%">DCTO.</td>
+    <td align="center" width="20%">VALOR</td>
   </tr>
   <?php
 $total = 0;
 $tot   = 0;
-$sql   = "select * from d_factura
+$sql   = "SELECT * from d_factura
         left join tipo_producto on d_factura.cod_tpro=tipo_producto.cod_tpro
         left join marca on d_factura.cod_cat=marca.cod_mar
         left join producto  on d_factura.cod_pro= producto.cod_pro
@@ -19,7 +19,7 @@ while ($db->next_row()) {
     //CONSULTA LA TALLA Y COLOR
     $talla = '';
     $dbt   = new database();
-    $sqlt  = " select * from talla
+    $sqlt  = " SELECT * from talla
             inner join d_factura on d_factura.cod_talla = talla.cod_talla
             WHERE cod_dfac= $db->cod_dfac";
     $dbt->query($sqlt);
@@ -29,7 +29,7 @@ while ($db->next_row()) {
 
     $color = '';
     $dbc   = new database();
-    $sqlc  = " select * from color
+    $sqlc  = " SELECT * from color
             inner join d_factura on d_factura.cod_color = color.cod_color
             WHERE cod_dfac= $db->cod_dfac";
     $dbc->query($sqlc);
@@ -37,13 +37,15 @@ while ($db->next_row()) {
         $color = $dbc->nom_color;
     }
     ?>
+
     <tr>
-      <td><?php echo $db->cod_fry_pro ?></td>
-      <td><?php echo $db->nom_tpro . ' ' . $db->nom_pro . ' ' . $talla . ' ' . $color ?></td>
-      <td align="right" ><?php echo $db->cant_pro ?></td>
-      <td align="center" ><?php echo number_format($db->desc_pro, 0, ".", ".") ?></td>
-      <td align="right"><?php echo '$' . number_format($db->total_pro, 0, ".", ".") ?></td>
+      <td width="10%"><?php echo $db->cod_fry_pro ?></td>
+      <td width="30%"><?php echo $db->nom_tpro . ' ' . $db->nom_pro . ' ' . $talla . ' ' . $color ?></td>
+      <td align="right" width="20%"><?php echo $db->cant_pro ?></td>
+      <td align="center" width="20%"><?php echo number_format($db->desc_pro, 0, ".", ".") ?></td>
+      <td align="right" width="20%"><?php echo '$ ' . number_format($db->total_pro, 0, ".", ".") ?></td>
     </tr>
+
     <?php
 $tot = $tot + $db->total_pro;
     $total++;
@@ -64,21 +66,23 @@ $descuento = $total - $tot_fac;
         <tr>
           <td>&nbsp;</td>
           <td colspan='2' align="right">SUBTOTAL</td>
-          <td colspan='2' align="right"><?PHP echo '$' . number_format($base, 0, ".", ".") ?></td>
+          <td colspan='2' align="right"><?PHP echo '$ ' . number_format($base, 0, ".", ".") ?></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td colspan='2' align="right" >IVA</td>
-          <td colspan='2' align="right"><?PHP echo '$' . number_format($iva_reg, 0, ".", ".") ?></td>
+          <td colspan='2' align="right"><?PHP echo '$ ' . number_format($iva_reg, 0, ".", ".") ?></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td colspan='2' align="right">TOTAL</td>
-          <td colspan='2' align="right"><?PHP echo '$' . number_format($tot_fac, 0, ".", ".") ?></td>
+          <td colspan='2' align="right"><?PHP echo '$ ' . number_format($tot_fac, 0, ".", ".") ?></td>
         </tr>
         <tr>
           <td colspan="5">&nbsp;</td>
         </tr>
+
+
                 <?php
 //CONSULTA NOMBRE VENDEDOR
 $dbv  = new database();
@@ -135,6 +139,7 @@ if ($dbb->next_row()) {
           <?php
 }
     ?>
+
           <?php
 if ($ahorro_lista > 0) {
         ?>
@@ -149,6 +154,7 @@ if ($ahorro_lista > 0) {
           <?
 }
 ?>
+
         <tr>
           <td colspan="5">&nbsp;</td>
         </tr>
@@ -200,7 +206,7 @@ $tot_abono = $tot_abono + $dba->tot_abo;
     }
 }
 ?>
-          </tr>
+
         <?php
 //CONSULTA BONO
 $dbb1  = new database();
@@ -217,7 +223,6 @@ if ($dbb1->next_row()) {
                   <td colspan="2">&nbsp;</td>
                 </tr>
                 <?php }?>
-        <tr>
           <?php
 $dbo  = new database();
 $sqlo = "SELECT * FROM otros_pagos
@@ -228,16 +233,18 @@ $dbo->query($sqlo);
 $tot_tar = 0;
 while ($dbo->next_row()) {
     ?>
+        <tr>
           <td colspan="2"><?php echo $dbo->nom_tpag ?></td>
-          <td align="right"><?php echo '$' . number_format($dbo->val_otro, 0, ".", ".") ?><?php if ($dbo->num_auto) {
+          <td align="right" colspan="3">
+            <?php
+echo '$' . number_format($dbo->val_otro, 0, ".", ".") ?><?php if ($dbo->num_auto) {
         echo 'AUT.' . $dbo->num_auto;
     }
-    ?></td>
-          <td colspan="2">&nbsp;</td>
+    ?>
+          </td>
         </tr>
-        <tr>
-          <?php }?>
-        </tr>
+  <?php }?>
+
         <tr>
           <td colspan='5' align='center'>VENDEDOR:<?php echo $vend ?></td>
         </tr>

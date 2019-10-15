@@ -1,5 +1,5 @@
 <tr>
-  <td colspan="5"><img src='../imagenes/logo.jpg' width='80%' align="center"></td>
+  <td colspan="5"><img src='../imagenes/logo.jpg' width='100%' align="center"></td>
 </tr>
 <tr>
   <td colspan="5"><div align="center"><?php echo $razon ?></div></td>
@@ -38,5 +38,5 @@ if ($tipo_fac == 'B') {
   <td  ALIGN='center' colspan="5">FECHA:<?php echo $fac_fecha; ?></td>
 </tr>
 <tr>
-  <td><div align="justify"><?php echo $leyenda ?></div></td>
+  <td colspan="5"><div align="justify"><?php echo $leyenda ?></div></td>
 </tr>
